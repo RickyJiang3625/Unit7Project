@@ -2,16 +2,16 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 public class PostageCalculator {
     private static final double baseCost=3.75;
-    public static String calculate(int zip1,int zip2,double weight,double w,double l,double h){
+    public static String calculate(int zip1,int zip2,double weight,double l,double w,double h){
         DecimalFormat format=new DecimalFormat("#.00");
         format.setRoundingMode(RoundingMode.HALF_UP);
 
         double cost=baseCost;
         if(weight<40) {
-            cost += (weight % .10 * 0.5);
+            cost += (weight * 0.5);
         }
         else{
-            cost+=(weight % .10 * 0.5)+(((weight-40)%.10)*0.5);
+            cost+=(weight * 0.5)+((weight-40)*0.5);
         }
         String firstZip=String.valueOf(zip1);
         String secondZip=String.valueOf(zip2);
@@ -24,7 +24,7 @@ public class PostageCalculator {
             cost+=(double) (county1-county2)/100;
         }
         if(l+w+h>36){
-            cost+=(l+w+h)*0.1;
+            cost+=((l+w+h)-36)*0.1;
         }
         return format.format(cost);
     }

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Address {
     private String houseNum;
     private String streetName;
@@ -34,7 +36,7 @@ public class Address {
 
     }
     public static Address random(){
-        return new Address("123 Random Street Apt 3C, City, State"+((int) (Math.random()*99001)+1000));
+        return new Address("123 Random Street Apt 3C, City, State "+((int) (Math.random()*99001)+1000));
     }
 
     public String getHouseNum() {
@@ -83,5 +85,8 @@ public class Address {
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
+    }
+    public String toString() {
+        return houseNum + " " + streetName + " " + aptNum + ", " + city + ", " + state + " " + zipCode;
     }
 }
